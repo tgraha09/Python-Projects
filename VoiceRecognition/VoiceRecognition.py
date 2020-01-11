@@ -1,8 +1,11 @@
 import speech_recognition as sr
 import os
 import subprocess as sp
+size = 10
 
 def run_Simon():
+    
+    searchResults = [None] * size
     while True:
         r = sr.Recognizer()
         with sr.Microphone() as source:
@@ -36,7 +39,6 @@ def run_Simon():
                 print("Sorry could you repeat that?")
 
 def run_Search(query):
-    size = 10
     sites = [None] * size
    
     try: 
@@ -44,11 +46,12 @@ def run_Search(query):
     except ImportError:  
         print("No module named 'google' found") 
     i = 0
-    for j in search(query, tld="co.in", num=10, stop=10, pause=2): 
+    for j in search(query, tld="co.in", num=size, stop=size, pause=2): 
         str = j
         sites[i] = str
         print(sites[i]) 
         i = i + 1
+    return sites
 
 #run_Simon()
 run_Search("pizza")
